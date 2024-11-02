@@ -102,7 +102,7 @@ def save_to_csv(employees, csv_file_path):
     """ Сохраняет данные о сотрудниках в CSV-файл. """
     with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csv_file:
         fieldnames = employees[0].keys()
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter('employees.csv', fieldnames=fieldnames)
 
         writer.writeheader()
         for employee in employees:
@@ -167,7 +167,7 @@ def main_menu(employees):
             add_employee_to_json('employees.json')
 
         elif choice == '6':
-            add_employee_to_csv(csv_file_path)
+            add_employee_to_csv('employees.csv')
 
 
         elif choice == '7':
@@ -180,7 +180,7 @@ def main_menu(employees):
 
 # Путь к JSON-файлу
 json_file_path = './data.json'
-
+output_csv_path = './'
 # Загружаем данные о сотрудниках
 employees = load_employees(json_file_path)
 
