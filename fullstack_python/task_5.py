@@ -4,6 +4,8 @@ import csv
 
 
 def load_employees(json_file_path):
+
+
     """ Загружает данные о сотрудниках из JSON-файла. """
     if os.path.exists(json_file_path):
         with open(json_file_path, 'r', encoding='utf-8') as json_file:
@@ -14,6 +16,8 @@ def load_employees(json_file_path):
 
 
 def add_employee_to_json(json_file_path):
+
+
     if os.path.exists(json_file_path):
         with open(json_file_path, 'r', encoding='utf-8') as json_file:
             employees = json.load(json_file)
@@ -46,6 +50,8 @@ def add_employee_to_json(json_file_path):
 
 
 def add_employee_to_csv(csv_file_path):
+
+
     file_exists = os.path.exists(csv_file_path)
 
     # Сбор данных о новом сотруднике
@@ -71,6 +77,8 @@ def add_employee_to_csv(csv_file_path):
 
 
 def find_employee_by_name(employees, name):
+
+
     """ Находит информацию о сотруднике по имени. """
     for employee in employees:
         if employee['name'].lower() == name.lower():
@@ -79,11 +87,15 @@ def find_employee_by_name(employees, name):
 
 
 def filter_employees_by_language(employees, language):
+
+
     """ Выводит всех сотрудников, владеющих указанным языком программирования. """
     return [employee for employee in employees if language in employee['languages']]
 
 
 def filter_employees_by_year(employees, year):
+
+
     """ Вычисляет средний рост сотрудников, родившихся до указанного года. """
     total_height = 0
     count = 0
@@ -99,6 +111,8 @@ def filter_employees_by_year(employees, year):
 
 
 def save_to_csv(employees, csv_file_path):
+
+
     """ Сохраняет данные о сотрудниках в CSV-файл. """
     with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csv_file:
         fieldnames = employees[0].keys()
@@ -110,6 +124,8 @@ def save_to_csv(employees, csv_file_path):
 
 
 def json_to_csv(input_json_path, output_csv_path):
+
+
     """ Преобразует JSON-файл в CSV-файл. """
     employees = load_employees(input_json_path)
     if employees:
@@ -120,6 +136,8 @@ def json_to_csv(input_json_path, output_csv_path):
 
 
 def main_menu(employees):
+
+
     while True:
         print("\n-- Меню --")
         print("1. Найти сотрудника по имени")

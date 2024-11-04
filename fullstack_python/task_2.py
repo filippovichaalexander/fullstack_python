@@ -1,22 +1,26 @@
 import os
 
-file_path = './text.py'
+FILE_PATH = './text.py'
 
 
-def read_file(file_path):
+def read_file(FILE_PATH):
+
+
     # Проверяем, существует ли файл
-    if not os.path.exists(file_path):
-        print(f"Файл {file_path} не найден.")
+    if not os.path.exists(FILE_PATH):
+        print(f"Файл {FILE_PATH} не найден.")
         return []
 
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(FILE_PATH, 'r', encoding='utf-8') as file:
         lines = file.readlines()
 
     return lines
 
 
-def print_file_contents(file_path):
-    lines = read_file(file_path)
+def print_file_contents(FILE_PATH):
+
+
+    lines = read_file(FILE_PATH)
 
     if lines:
         # первая строка
@@ -45,4 +49,4 @@ def print_file_contents(file_path):
             print(line.strip())
 
 
-print_file_contents(file_path)
+print_file_contents(FILE_PATH)

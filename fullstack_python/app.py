@@ -41,6 +41,8 @@ import random
 
 
 def sort_files_by_extension(directory):
+
+
     summary = {}
     moved_files = {}
 

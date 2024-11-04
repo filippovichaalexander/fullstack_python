@@ -25,6 +25,7 @@ print(f"Строки успешно записаны в файл '{file_name_2}'
 # сравнивание файлов
 def compare_files(file_name, file_name_2):
 
+
     with open(file_name, 'r', encoding='utf-8') as file1, open(file_name_2, 'r', encoding='utf-8') as file2:
 
         lines1 = file1.readlines()
