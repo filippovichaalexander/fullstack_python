@@ -48,17 +48,24 @@ def search(arr, x):
 подходом.
 '''
 def to_binary(num):
-    value = str(num)
+
+
     binary = ""
 
-    while int(value) > 0:
-        if int(value) % 2 == 0:
+    while int(num) > 0:
+        if int(num) % 2 == 0:
             binary = "0" + binary
         else:
             binary = "1" + binary
-        value = str(int(value) // 2)
+        num = int(num) // 2
 
     return binary
+
+def decimal_to_binary_rec(n):
+    if n == 0:
+        return ""
+    else:
+        return decimal_to_binary_rec(n // 2) + str(n % 2)
 
 
 # Пример использования
