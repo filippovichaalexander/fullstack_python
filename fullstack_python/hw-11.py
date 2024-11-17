@@ -13,19 +13,23 @@ class InfiniteSequence:
         self.index = (self.index + 1) % len(self.sequence)
         return result
 
-def get_infinite_sequence(sequence, count):
-    seq = InfiniteSequence(sequence)
-    for _ in range(count):
-        print(next(seq))
+def get_infinite_sequence(sequence):
+
+    while True:
+        for item in sequence: yield item
 
 sequence = [1, 2, 3]
+gen = get_infinite_sequence(sequence)
 count = int(input("Введите количество чисел для вывода: "))
-get_infinite_sequence(sequence, count)
+
+for _ in range(count): print(next(gen))
+
 
 # task 2
 
 class Pizza:
-    def __init__(self, size, cheese, pepperoni, mushrooms, onions, bacon):
+    def __init__(self, size=None, cheese=False, pepperoni=False,
+                 mushrooms=False, onions=False, bacon=False):
         self.size = size
         self.cheese = cheese
         self.pepperoni = pepperoni
