@@ -40,15 +40,18 @@ class MyTime:
     def __le__(self, other):
         return (self.hours, self.minutes, self.seconds) <= (other.hours, other.minutes, other.seconds)
 
+    def convert_to_seconds(self):
+        return self.hours * 3600 + self.minutes * 60 + self.seconds
+
     def __add__(self, other):
         if isinstance(other, MyTime):
-            total_seconds = (self.hours * 3600 + self.minutes * 60 + self.seconds) + (other.hours * 3600 + other.minutes * 60 + other.seconds)
+            total_seconds = self.convert_to_seconds() + other.convert_to_seconds()
             hours = total_seconds // 3600
             minutes = (total_seconds % 3600) // 60
             seconds = total_seconds % 60
             return MyTime(hours, minutes, seconds)
         elif isinstance(other, (int, float)):
-            total_seconds = (self.hours * 3600 + self.minutes * 60 + self.seconds) + other
+            total_seconds = self.convert_to_seconds() + other
             hours = total_seconds // 3600
             minutes = (total_seconds % 3600) // 60
             seconds = total_seconds % 60
@@ -58,13 +61,13 @@ class MyTime:
 
     def __sub__(self, other):
         if isinstance(other, MyTime):
-            total_seconds = (self.hours * 3600 + self.minutes * 60 + self.seconds) - (other.hours * 3600 + other.minutes * 60 + other.seconds)
+            total_seconds = self.convert_to_seconds() - other.convert_to_seconds()
             hours = total_seconds // 3600
             minutes = (total_seconds % 3600) // 60
             seconds = total_seconds % 60
             return MyTime(hours, minutes, seconds)
         elif isinstance(other, (int, float)):
-            total_seconds = (self.hours * 3600 + self.minutes * 60 + self.seconds) - other
+            total_seconds = self.convert_to_seconds() - other
             hours = total_seconds // 3600
             minutes = (total_seconds % 3600) // 60
             seconds = total_seconds % 60
@@ -74,7 +77,7 @@ class MyTime:
 
     def __mul__(self, other):
         if isinstance(other, (int, float)):
-            total_seconds = (self.hours * 3600 + self.minutes * 60 + self.seconds) * other
+            total_seconds = self.convert_to_seconds() * other
             hours = total_seconds // 3600
             minutes = (total_seconds % 3600) // 60
             seconds = total_seconds % 60

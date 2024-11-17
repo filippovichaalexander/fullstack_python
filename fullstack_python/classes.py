@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Union
+from typing import List, Union, Optional
 from collections import defaultdict
 from collections import defaultdict
 
@@ -8,7 +8,7 @@ class InvalidBookAttributeError(Exception):
 
 @dataclass
 class Book:
-    book_id: int
+    book_id: Optional[int] = field(init=False, default=None, compare=False)
     pages: int
     year: int
     author: str
@@ -27,18 +27,17 @@ class Book:
 
 class Library:
     def __init__(self):
-        self.books = []
+        self.books = {}
         self.book_index = defaultdict(list)
 
     def add_book(self, book: Book):
         book.book_id = len(self.books) + 1
-        self.books.append(book)
+        self.books[book.book_id] = book
         self.book_index[book.author].append(book)
 
     def get_book_info(self, book_id: int):
-        for book in self.books:
-            if book.book_id == book_id:
-                return book
+        if book_id in self.books:
+            return self.books[book_id]
         raise ValueError(f"Книга с id {book_id} не найдена")
 
     def find_books_by_author(self, *authors: Union[str, List[str]]):
